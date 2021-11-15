@@ -370,6 +370,38 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@jonahsnider/aoc-2021@workspace:.":
+  version: 0.0.0-use.local
+  resolution: "@jonahsnider/aoc-2021@workspace:."
+  dependencies:
+    "@jonahsnider/benchmark": 5.0.0
+    "@jonahsnider/prettier-config": 1.1.0
+    "@jonahsnider/util": 8.4.3
+    "@jonahsnider/xo-config": 5.0.0
+    "@tsconfig/node16": 1.0.2
+    "@types/node": 16.11.7
+    ava: 4.0.0-rc.1
+    c8: 7.10.0
+    clipanion: 3.2.0-rc.3
+    convert: 4.3.0
+    prettier: 2.4.1
+    ts-node: 10.4.0
+    type-fest: 2.5.3
+    typescript: 4.4.4
+    xo: 0.46.4
+  languageName: unknown
+  linkType: soft
+
+"@jonahsnider/benchmark@npm:5.0.0":
+  version: 5.0.0
+  resolution: "@jonahsnider/benchmark@npm:5.0.0"
+  dependencies:
+    "@jonahsnider/util": 8.4.2
+    tslib: 2.3.1
+  checksum: 4e8690a9c232d9b25cd68d753399ffc3662ef4e43b7471ddbb171b5582c9241d0b36291814f7222d3157e317c429b2151f7285a8d8ba69ec230079ac4b8baeda
+  languageName: node
+  linkType: hard
+
 "@jonahsnider/prettier-config@npm:1.1.0":
   version: 1.1.0
   resolution: "@jonahsnider/prettier-config@npm:1.1.0"
@@ -377,6 +409,20 @@ __metadata:
     "@types/prettier": 2.4.1
     prettier-config-xo: 2.0.0
   checksum: 7ff95794438cb2c7f4f794812d2933cd4f7e6958f017452f0ed4aae9ebccab25fc2fefa3a11986f7fa1cb61db2363eaecd59c2f67ac863fade63d643775ce874
+  languageName: node
+  linkType: hard
+
+"@jonahsnider/util@npm:8.4.2":
+  version: 8.4.2
+  resolution: "@jonahsnider/util@npm:8.4.2"
+  checksum: e37585d9a1625d3d26a0b104409e426ee356d40ef41a5f4503f88b8c20078b42bc45168132288b1d1d46049347f386e7465964b3c30e2a5b44401587dd15ae21
+  languageName: node
+  linkType: hard
+
+"@jonahsnider/util@npm:8.4.3":
+  version: 8.4.3
+  resolution: "@jonahsnider/util@npm:8.4.3"
+  checksum: 32fa66550382bc8b22f837e7c5dcd2f7de47e7ce76620287b9ceff965eafd831fcd1a8dbeb764ce7f6d3da63284b41a3d9385b42ef0a1a9ae4c36ee97a08f27f
   languageName: node
   linkType: hard
 
@@ -1329,6 +1375,17 @@ __metadata:
   languageName: node
   linkType: hard
 
+"clipanion@npm:3.2.0-rc.3":
+  version: 3.2.0-rc.3
+  resolution: "clipanion@npm:3.2.0-rc.3"
+  dependencies:
+    typanion: ^3.3.1
+  peerDependencies:
+    typanion: "*"
+  checksum: 3b202a331b323e5f2fe5ceb6e2282eb69cba87e588e75f009bbb87ea1e64f17f5203067b760549d689d71a966267d8928f805354c68777781083fb3b1a8a4662
+  languageName: node
+  linkType: hard
+
 "cliui@npm:^7.0.2":
   version: 7.0.4
   resolution: "cliui@npm:7.0.4"
@@ -1466,6 +1523,13 @@ __metadata:
   version: 1.0.2
   resolution: "convert-to-spaces@npm:1.0.2"
   checksum: e73f2ae39eb2b184f0796138eaab9c088b03b94937377d31be5b2282aef6a6ccce6b46f51bd99b3b7dfc70f516e2a6b16c0dd911883bfadf8d1073f462480224
+  languageName: node
+  linkType: hard
+
+"convert@npm:4.3.0":
+  version: 4.3.0
+  resolution: "convert@npm:4.3.0"
+  checksum: fc734a001f005db9a0c3fa04de29def46899f5604863182909e3084e0f04a2ed72c230c1033376003b5111bc2ed9b22fb5f6bc1a775ad476db64d6f3594ff3ef
   languageName: node
   linkType: hard
 
@@ -5259,6 +5323,13 @@ resolve@~1.19.0:
   languageName: node
   linkType: hard
 
+"tslib@npm:2.3.1":
+  version: 2.3.1
+  resolution: "tslib@npm:2.3.1"
+  checksum: de17a98d4614481f7fcb5cd53ffc1aaf8654313be0291e1bfaee4b4bb31a20494b7d218ff2e15017883e8ea9626599b3b0e0229c18383ba9dce89da2adf15cb9
+  languageName: node
+  linkType: hard
+
 "tslib@npm:^1.8.1":
   version: 1.14.1
   resolution: "tslib@npm:1.14.1"
@@ -5277,12 +5348,26 @@ resolve@~1.19.0:
   languageName: node
   linkType: hard
 
+"typanion@npm:^3.3.1":
+  version: 3.7.1
+  resolution: "typanion@npm:3.7.1"
+  checksum: 79f396a960167956999b585eb9f0baa61c79455c680778dd950261e73bf6465f5a38779cc176142099c7fbf440d578b44664632bb1e3e41769199278751d7d92
+  languageName: node
+  linkType: hard
+
 "type-check@npm:^0.4.0, type-check@npm:~0.4.0":
   version: 0.4.0
   resolution: "type-check@npm:0.4.0"
   dependencies:
     prelude-ls: ^1.2.1
   checksum: ec688ebfc9c45d0c30412e41ca9c0cdbd704580eb3a9ccf07b9b576094d7b86a012baebc95681999dd38f4f444afd28504cb3a89f2ef16b31d4ab61a0739025a
+  languageName: node
+  linkType: hard
+
+"type-fest@npm:2.5.3":
+  version: 2.5.3
+  resolution: "type-fest@npm:2.5.3"
+  checksum: ad27aaf1b2917530bd66472881d53584812a12c6a6e9ca6fc00ce295e9cf9e48182ca25ad8cb429dad0a2ce324a71415d07f09d2ddec000e21f542bdb055977f
   languageName: node
   linkType: hard
 
@@ -5343,23 +5428,6 @@ resolve@~1.19.0:
   checksum: 99c11aaa8f45189fcfba6b8a4825fd684a321caa9bd7a76a27cf0c7732c174d198b99f449c52c3818107430b5f41c0ccbbfb75cb2ee3ca4a9451710986d61a60
   languageName: node
   linkType: hard
-
-"typescript-starter@workspace:.":
-  version: 0.0.0-use.local
-  resolution: "typescript-starter@workspace:."
-  dependencies:
-    "@jonahsnider/prettier-config": 1.1.0
-    "@jonahsnider/xo-config": 5.0.0
-    "@tsconfig/node16": 1.0.2
-    "@types/node": 16.11.7
-    ava: 4.0.0-rc.1
-    c8: 7.10.0
-    prettier: 2.4.1
-    ts-node: 10.4.0
-    typescript: 4.4.4
-    xo: 0.46.4
-  languageName: unknown
-  linkType: soft
 
 "typescript@4.4.4, typescript@^4.4.4":
   version: 4.4.4

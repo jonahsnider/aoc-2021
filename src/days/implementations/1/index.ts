@@ -1,4 +1,4 @@
-import {lines, Sort} from '@jonahsnider/util';
+import {lines} from '@jonahsnider/util';
 import {Day} from '../../../lib/solution.js';
 import type {SolutionPair} from '../../../lib/types.js';
 
@@ -8,26 +8,22 @@ export class Day1 extends Day {
 
 		const numbers = lines(input).map(line => Number(line));
 
-		numbers.sort(Sort.ascending);
+		for (let i = 1; i < numbers.length; i++) {
+			const a = numbers[i];
+			const b = numbers[i - 1];
+			const c = numbers[i - 2];
+			const d = numbers[i - 3];
 
-		for (const a of numbers) {
-			for (const b of numbers) {
-				if (a + b === 2020) {
-					solution[0] = a * b;
+			if (a > b) {
+				solution[0]++;
+			}
 
-					if (solution[1] !== 0) {
-						return solution;
-					}
-				}
+			if (a && b && c && d) {
+				const previousSum = b + c + d;
+				const curSum = a + b + c;
 
-				for (const c of numbers) {
-					if (a + b + c === 2020) {
-						solution[1] = a * b * c;
-
-						if (solution[0] !== 0) {
-							return solution;
-						}
-					}
+				if (curSum > previousSum) {
+					solution[1]++;
 				}
 			}
 		}

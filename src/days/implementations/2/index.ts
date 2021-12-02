@@ -45,7 +45,7 @@ export class Day2 extends Day {
 
 					break;
 				default:
-					throw new RangeError(`Unknown direction`);
+					throw new RangeError('Unknown direction');
 			}
 		}
 

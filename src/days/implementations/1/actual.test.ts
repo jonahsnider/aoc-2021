@@ -7,5 +7,5 @@ const input = await getInput(1);
 test('actual solution', t => {
 	const solution = new Day1().solve(input);
 
-	t.snapshot(solution);
+	t.deepEqual(solution, [1616, 1645]);
 });

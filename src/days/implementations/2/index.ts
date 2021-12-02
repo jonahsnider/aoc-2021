@@ -8,6 +8,7 @@ enum Direction {
 	Down = 'down',
 	Forward = 'forward',
 }
+
 interface Command {
 	direction: Direction;
 	units: number;

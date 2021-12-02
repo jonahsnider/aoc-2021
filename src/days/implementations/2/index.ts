@@ -9,6 +9,10 @@ enum Direction {
 }
 
 export class Day2 extends Day {
+	#checksum(position: {horizontal: number; depth: number}): number {
+		return position.horizontal * position.depth;
+	}
+
 	solve(input: string): SolutionPair {
 		const commands = lines(input).map(line => {
 			const split = line.split(' ');
@@ -49,6 +53,6 @@ export class Day2 extends Day {
 			}
 		}
 
-		return [positions.part1.horizontal * positions.part1.depth, positions.part2.horizontal * positions.part2.depth];
+		return [this.#checksum(positions.part1), this.#checksum(positions.part2)];
 	}
 }

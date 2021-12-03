@@ -17,19 +17,14 @@ export class Day3 extends Day {
 		let gamma = '';
 		let epsilon = '';
 
+		let oxygenBinaryStrings = [...binaryStrings];
+		let co2BinaryStrings = [...binaryStrings];
+
 		for (let columnIndex = 0; columnIndex < LINE_LENGTH; columnIndex++) {
 			const {mostCommon, leastCommon} = this.binaryFrequencyForColumn(binaryStrings, columnIndex);
 
 			gamma += mostCommon;
 			epsilon += leastCommon;
-		}
-
-		let oxygenBinaryStrings = [...binaryStrings];
-		let co2BinaryStrings = [...binaryStrings];
-		for (let columnIndex = 0; columnIndex < LINE_LENGTH; columnIndex++) {
-			if (co2BinaryStrings.length === 1 && oxygenBinaryStrings.length === 1) {
-				break;
-			}
 
 			if (oxygenBinaryStrings.length > 1) {
 				const oxygenFrequencies = this.binaryFrequencyForColumn(oxygenBinaryStrings, columnIndex);

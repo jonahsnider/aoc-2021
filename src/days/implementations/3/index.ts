@@ -55,10 +55,9 @@ export class Day3 extends Day {
 	}
 
 	private binaryFrequencyForColumn(binaryStrings: readonly string[], column: number): {mostCommon: Binary; leastCommon: Binary} {
-		const oneFrequency = count(
-			binaryStrings.map(x => x[column] as Binary),
-			x => x === '1',
-		);
+		const binaryChars = binaryStrings.map(x => x[column] as Binary);
+
+		const oneFrequency = count(binaryChars, x => x === '1');
 		const zeroFrequency = binaryStrings.length - oneFrequency;
 
 		return oneFrequency >= zeroFrequency ? ONE_MOST_COMMON : ZERO_MOST_COMMON;

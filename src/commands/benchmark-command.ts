@@ -1,9 +1,9 @@
+import {Console} from 'node:console';
+import {fileURLToPath, URL} from 'node:url';
 import {Benchmark} from '@jonahsnider/benchmark';
 import {toDigits} from '@jonahsnider/util';
 import {Command, Option} from 'clipanion';
 import convert from 'convert';
-import {Console} from 'node:console';
-import {fileURLToPath, URL} from 'node:url';
 import {days} from '../days/index.js';
 import type {Day} from '../lib/solution.js';
 import {resolveDays} from '../utils/days.js';

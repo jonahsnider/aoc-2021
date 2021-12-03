@@ -1,8 +1,9 @@
+import {Benchmark} from '@jonahsnider/benchmark';
+import {toDigits} from '@jonahsnider/util';
+import {Command, Option} from 'clipanion';
+import convert from 'convert';
 import {Console} from 'node:console';
 import {fileURLToPath, URL} from 'node:url';
-import convert from 'convert';
-import {Benchmark} from '@jonahsnider/benchmark';
-import {Command, Option} from 'clipanion';
 import {days} from '../days/index.js';
 import type {Day} from '../lib/solution.js';
 import {resolveDays} from '../utils/days.js';
@@ -54,9 +55,11 @@ export class BenchmarkCommand extends Command {
 
 		const benchmarkResults = await this.benchmark.runSuites();
 
-		return new Map(
-			[...benchmarkResults.entries()].map(([dayName, suiteResults]) => [dayName, convert(suiteResults.get('solve')!.percentile(50), 'ns').to('ms')]),
-		);
+		const resultsEntries = [...benchmarkResults.entries()];
+
+		resultsEntries.sort(([dayNameA], [dayNameB]) => dayNameA.localeCompare(dayNameB, undefined, {numeric: true}));
+
+		return new Map(resultsEntries.map(([dayName, suiteResults]) => [dayName, toDigits(convert(suiteResults.get('solve')!.percentile(50), 'ns').to('ms'), 2)]));
 	}
 
 	private resolveDays(): Map<string, Day> {

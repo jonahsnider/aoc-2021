@@ -1,8 +1,8 @@
 import assert from 'node:assert/strict';
 import {URL} from 'node:url';
 import {Suite} from '@jonahsnider/benchmark';
-import {days} from '../days/index.js';
-import {getInput} from '../utils/days.js';
+import {days} from '../../days/index.js';
+import {getInput} from '../../utils/days.js';
 
 const dayName = new URL(import.meta.url).searchParams.get('day');
 assert(dayName);

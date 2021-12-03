@@ -4,9 +4,9 @@ import {Benchmark} from '@jonahsnider/benchmark';
 import {toDigits} from '@jonahsnider/util';
 import {Command, Option} from 'clipanion';
 import convert from 'convert';
-import {days} from '../days/index.js';
-import type {Day} from '../lib/solution.js';
-import {resolveDays} from '../utils/days.js';
+import {days} from '../../days/index.js';
+import type {Day} from '../../lib/solution.js';
+import {resolveDays} from '../../utils/days.js';
 
 export class BenchmarkCommand extends Command {
 	static readonly paths = [['benchmark'], ['b']];
@@ -46,7 +46,7 @@ export class BenchmarkCommand extends Command {
 						run: () => {
 							throw new Error('unreachable');
 						},
-						filepath: fileURLToPath(new URL(`../lib/benchmark-worker.js`, import.meta.url)) + `?day=${dayName}`,
+						filepath: fileURLToPath(new URL(`./benchmark-worker.js`, import.meta.url)) + `?day=${dayName}`,
 					},
 					{threaded: true},
 				),

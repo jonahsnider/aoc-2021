@@ -16,7 +16,7 @@ interface Command {
 
 export class Day2 extends Day {
 	solve(input: string): SolutionPair {
-		const commands = lines(input).map(line => this.#parseCommand(line));
+		const commands = lines(input).map(line => this.parseCommand(line));
 
 		const positions = {
 			part1: {
@@ -56,10 +56,10 @@ export class Day2 extends Day {
 			}
 		}
 
-		return [this.#checksum(positions.part1), this.#checksum(positions.part2)];
+		return [this.checksum(positions.part1), this.checksum(positions.part2)];
 	}
 
-	#parseCommand(command: string): Command {
+	private parseCommand(command: string): Command {
 		const [direction, units] = command.split(' ');
 
 		assert(enumHas(Direction, direction), new RangeError(`Unknown direction: ${direction}`));
@@ -67,7 +67,7 @@ export class Day2 extends Day {
 		return {direction, units: Number(units)};
 	}
 
-	#checksum(position: {horizontal: number; depth: number}): number {
+	private checksum(position: {horizontal: number; depth: number}): number {
 		return position.horizontal * position.depth;
 	}
 }

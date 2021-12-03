@@ -376,7 +376,7 @@ __metadata:
   dependencies:
     "@jonahsnider/benchmark": 5.0.0
     "@jonahsnider/prettier-config": 1.1.0
-    "@jonahsnider/util": 8.6.0
+    "@jonahsnider/util": 8.8.0
     "@jonahsnider/xo-config": 5.0.1
     "@tsconfig/node16": 1.0.2
     "@types/node": 16.11.11
@@ -419,10 +419,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@jonahsnider/util@npm:8.6.0":
-  version: 8.6.0
-  resolution: "@jonahsnider/util@npm:8.6.0"
-  checksum: 46fb432871c423ebed6cff7934c06683d890a628c5499665518418f6c3a567434def16e900236f659e9d3f84e68df92db6744b0ee1fb99a04c0cc7405a1134ab
+"@jonahsnider/util@npm:8.8.0":
+  version: 8.8.0
+  resolution: "@jonahsnider/util@npm:8.8.0"
+  checksum: 507c363b4b5c64cbb2e1049f51d5cc809814705b24a21f0bb114d0b71bf2b3134023c382eb11af702ccec96b1fa10820779ca3852f239560ae0e698ea63d2a0a
   languageName: node
   linkType: hard
 

@@ -1,61 +1,66 @@
-import {frequencyTable, lines} from '@jonahsnider/util';
+import assert from 'node:assert/strict';
+import {count, lines} from '@jonahsnider/util';
 import {Day} from '../../../lib/solution.js';
 import type {SolutionPair} from '../../../lib/types.js';
 
+type Binary = '1' | '0';
+
+const ZERO_MOST_COMMON = {mostCommon: '0', leastCommon: '1'} as const;
+const ONE_MOST_COMMON = {mostCommon: '1', leastCommon: '0'} as const;
+
 export class Day3 extends Day {
 	solve(input: string): SolutionPair {
-		const solution: SolutionPair = [0, 0];
+		const binaryStrings = lines(input);
 
-		const binarys = lines(input);
+		const LINE_LENGTH = binaryStrings[0].length;
 
 		let gamma = '';
 		let epsilon = '';
 
-		for (let i = 0; i < binarys[0].length; i++) {
-			const frequencies = frequencyTable(binarys.map(x => x[i])) as Map<'1' | '0', number>;
-
-			const [one, zero] = [frequencies.get('1')!, frequencies.get('0')!];
-
-			const mostCommon = one > zero ? '1' : '0';
-			const leastCommon = one > zero ? '0' : '1';
+		for (let columnIndex = 0; columnIndex < LINE_LENGTH; columnIndex++) {
+			const {mostCommon, leastCommon} = this.binaryFrequencyForColumn(binaryStrings, columnIndex);
 
 			gamma += mostCommon;
 			epsilon += leastCommon;
 		}
 
-		console.log({epsilon, gamma});
+		let oxygenBinaryStrings = [...binaryStrings];
+		let co2BinaryStrings = [...binaryStrings];
+		for (let columnIndex = 0; columnIndex < LINE_LENGTH; columnIndex++) {
+			if (co2BinaryStrings.length === 1 && oxygenBinaryStrings.length === 1) {
+				break;
+			}
 
-		solution[0] = Number.parseInt(gamma, 2) * Number.parseInt(epsilon, 2);
+			if (oxygenBinaryStrings.length > 1) {
+				const oxygenFrequencies = this.binaryFrequencyForColumn(oxygenBinaryStrings, columnIndex);
+				oxygenBinaryStrings = oxygenBinaryStrings.filter(x => x[columnIndex] === oxygenFrequencies.mostCommon);
+				assert.notEqual(oxygenBinaryStrings.length, 0);
+			}
 
-		let oxygenBinarys = [...binarys];
+			if (co2BinaryStrings.length > 1) {
+				const co2Frequencies = this.binaryFrequencyForColumn(co2BinaryStrings, columnIndex);
 
-		for (let i = 0; i < binarys[0].length; i++) {
-			const frequencies = frequencyTable(oxygenBinarys.map(x => x[i])) as Map<'1' | '0', number>;
-
-			const [one, zero] = [frequencies.get('1')!, frequencies.get('0')!];
-
-			const mostCommon = one >= zero ? '1' : '0';
-
-			oxygenBinarys = oxygenBinarys.filter(x => x[i] === mostCommon);
+				co2BinaryStrings = co2BinaryStrings.filter(x => x[columnIndex] === co2Frequencies.leastCommon);
+				assert.notEqual(co2BinaryStrings.length, 0);
+			}
 		}
 
-		let co2Binarys = [...binarys];
+		assert.equal(oxygenBinaryStrings.length, 1);
+		assert.equal(co2BinaryStrings.length, 1);
 
-		for (let i = 0; i < binarys[0].length; i++) {
-			const frequencies = frequencyTable(co2Binarys.map(x => x[i])) as Map<'1' | '0', number>;
+		const [oxygen] = oxygenBinaryStrings;
+		const [co2] = co2BinaryStrings;
 
-			const [one, zero] = [frequencies.get('1')!, frequencies.get('0')!];
+		return [Number.parseInt(gamma, 2) * Number.parseInt(epsilon, 2), Number.parseInt(oxygen, 2) * Number.parseInt(co2, 2)];
+	}
 
-			const leastCommon = one >= zero ? '0' : '1';
+	private binaryFrequencyForColumn(binaryStrings: readonly string[], column: number): {mostCommon: Binary; leastCommon: Binary} {
+		const oneFrequency = count(
+			binaryStrings.map(x => x[column] as Binary),
+			x => x === '1',
+		);
+		const zeroFrequency = binaryStrings.length - oneFrequency;
 
-			co2Binarys = co2Binarys.filter(x => x[i] === leastCommon);
-		}
-
-		const oxygen = oxygenBinarys[0];
-		const co2 = co2Binarys[0];
-
-		solution[1] = Number.parseInt(oxygen, 2) * Number.parseInt(co2, 2);
-
-		return solution;
+		return oneFrequency >= zeroFrequency ? ONE_MOST_COMMON : ZERO_MOST_COMMON;
 	}
 }

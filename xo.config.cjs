@@ -1,1 +1,8 @@
-module.exports = require('@jonahsnider/xo-config');
+const base = require('@jonahsnider/xo-config');
+
+const config = {...base};
+
+config.rules['unicorn/no-array-reduce'] = 'off';
+config.rules['unicorn/no-array-callback-reference'] = 'off';
+
+module.exports = config;

@@ -3,8 +3,8 @@ import {URL} from 'node:url';
 import {days} from '../days/index.js';
 import type {Day} from '../lib/solution.js';
 
-class UnknownDayError extends RangeError {
-	name = 'UnknownDayError';
+export class UnknownDayError extends RangeError {
+	name = this.constructor.name;
 	constructor(day: string) {
 		super(`Day ${day} could not be resolved`);
 	}

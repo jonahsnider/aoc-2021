@@ -28,12 +28,12 @@ export class Day4 extends Day {
 
 		for (const number of numbers) {
 			for (const bingoCard of bingoCards) {
-				if (winners.has(bingoCard)) {
-					continue;
-				}
-
 				if (winners.size === bingoCards.length) {
 					break;
+				}
+
+				if (winners.has(bingoCard)) {
+					continue;
 				}
 
 				this.setNumberChecked(bingoCard, number);

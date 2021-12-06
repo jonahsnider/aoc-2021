@@ -12,7 +12,7 @@ const input = `0,9 -> 5,9
 0,0 -> 8,8
 5,5 -> 8,2`;
 
-test.failing('works', t => {
+test('works', t => {
 	const [, solution] = new Day5().solve(input);
 
 	t.is(solution, 12);

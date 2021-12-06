@@ -85,19 +85,15 @@ class Ocean {
 		const willGoDown = line.start.y < line.end.y;
 
 		if (willGoRight) {
-			if (willGoDown) {
-				const diff = line.end.x - line.start.x;
+			const diff = line.end.x - line.start.x;
 
-				// Going from top left to bottom right
-				for (let i = 0; i < diff + 1; i++) {
+			for (let i = 0; i < diff + 1; i++) {
+				if (willGoDown) {
+					// Going from top left to bottom right
 					this.drawPoint({x: line.start.x + i, y: line.start.y + i});
-				}
-			} else {
-				// Going from bottom left to top right
+				} else {
+					// Going from bottom left to top right
 
-				const diff = line.end.x - line.start.x;
-
-				for (let i = 0; i < diff + 1; i++) {
 					this.drawPoint({x: line.start.x + i, y: line.start.y - i});
 				}
 			}

@@ -1,3 +1,4 @@
+import {frequencyTable} from '@jonahsnider/util';
 import {Day} from '../../../lib/solution.js';
 import type {SolutionPair} from '../../../lib/types.js';
 
@@ -5,29 +6,27 @@ export class Day7 extends Day {
 	solve(input: string): SolutionPair {
 		const solution: SolutionPair = [Number.POSITIVE_INFINITY, Number.POSITIVE_INFINITY];
 
-		// Using a frequency table here is faster from a theoretical perspective
-		// Instead of processing [2, 2, 2, 2, 2] as 5 iterations you can do [[2, 5]] as 1 iteration
-		// In reality this adds about 6 milliseconds to the execution time with the actual input of 1000 numbers (~600 unique)
-		// For much larger input sizes you should use the frequency table approach
-		const positions = input.split(',').map(string => Number(string));
+		const positions = frequencyTable(input.split(',').map(string => Number(string)));
 
 		let minPosition = Number.POSITIVE_INFINITY;
 		let maxPosition = Number.NEGATIVE_INFINITY;
 
-		for (const position of new Set(positions)) {
+		for (const position of positions.keys()) {
 			minPosition = Math.min(minPosition, position);
 			maxPosition = Math.max(maxPosition, position);
 		}
+
+		const positionsArray = [...positions] as const;
 
 		for (let position = minPosition; position <= maxPosition; position++) {
 			let totalDistance = 0;
 			let totalFuelCost = 0;
 
-			for (const otherPosition of positions) {
-				const distance = this.distance(position, otherPosition);
+			for (const [otherPosition, quantity] of positionsArray) {
+				const distance = this.distance(position, otherPosition) * quantity;
 				totalDistance += distance;
 
-				const fuelCost = this.fuelCost(position, otherPosition);
+				const fuelCost = this.fuelCost(position, otherPosition) * quantity;
 				totalFuelCost += fuelCost;
 			}
 

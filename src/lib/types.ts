@@ -1,1 +1,1 @@
-export type SolutionPair = [part1: number, part2: number];
+export type SolutionPair = [part1: number | string, part2: number | string];

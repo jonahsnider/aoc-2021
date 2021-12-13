@@ -1,14 +1,18 @@
-import {Console} from 'node:console';
+import {Sort} from '@jonahsnider/util';
 import {Command, Option} from 'clipanion';
+import {Console} from 'node:console';
 import {days} from '../days/index.js';
 import type {Day} from '../lib/solution.js';
+import type {SolutionPair} from '../lib/types.js';
 import {getInput, resolveDays} from '../utils/days.js';
 
 interface DaySolution {
 	day: number;
-	part1: number;
-	part2: number;
+	part1: number | string;
+	part2: number | string;
 }
+
+const MAX_STRING_SOLUTION_LENGTH = 7;
 
 export class RunCommand extends Command {
 	static readonly paths = [['run'], ['r'], Command.Default];
@@ -40,6 +44,18 @@ export class RunCommand extends Command {
 		return resolveDays(this.days);
 	}
 
+	private formatSolution(solution: SolutionPair[number]): SolutionPair[number] {
+		if (typeof solution === 'string') {
+			if (solution.length <= MAX_STRING_SOLUTION_LENGTH) {
+				return solution;
+			}
+
+			return '[truncated]';
+		}
+
+		return solution;
+	}
+
 	private async runDays() {
 		const days = this.resolveDays();
 
@@ -49,9 +65,15 @@ export class RunCommand extends Command {
 
 				const [part1, part2] = await day.solve(input);
 
-				return {day: Number(dayName), part1, part2};
+				return {
+					day: Number(dayName),
+					part1: this.formatSolution(part1),
+					part2: this.formatSolution(part2),
+				};
 			}),
 		);
+
+		results.sort(Sort.ascending(x => x.day));
 
 		return results;
 	}

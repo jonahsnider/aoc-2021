@@ -76,7 +76,7 @@ export class Day12 extends Day {
 	private readonly graph = new Map<string, Cave>();
 
 	solve(input: string): SolutionPair {
-		const solution: SolutionPair = [0, 0];
+		const solution: [part1: number, part2: number] = [0, 0];
 
 		const rawPaths = lines(input).map(line => line.split('-') as [from: string, to: string]);
 

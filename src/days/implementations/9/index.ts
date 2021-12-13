@@ -9,7 +9,7 @@ type Basin = Point[];
 
 export class Day9 extends Day {
 	solve(input: string): SolutionPair {
-		const solution: SolutionPair = [0, 0];
+		const solution: [part1: number, part2: number] = [0, 0];
 
 		const grid: Grid = lines(input).map(line => line.split('').map(digit => Number(digit)));
 

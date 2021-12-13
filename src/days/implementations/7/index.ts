@@ -4,7 +4,7 @@ import type {SolutionPair} from '../../../lib/types.js';
 
 export class Day7 extends Day {
 	solve(input: string): SolutionPair {
-		const solution: SolutionPair = [Number.POSITIVE_INFINITY, Number.POSITIVE_INFINITY];
+		const solution: [part1: number, part2: number] = [Number.POSITIVE_INFINITY, Number.POSITIVE_INFINITY];
 
 		const positions = frequencyTable(input.split(',').map(string => Number(string)));
 

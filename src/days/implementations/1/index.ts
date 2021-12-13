@@ -4,7 +4,7 @@ import type {SolutionPair} from '../../../lib/types.js';
 
 export class Day1 extends Day {
 	solve(input: string): SolutionPair {
-		const solution: SolutionPair = [0, 0];
+		const solution: [part1: number, part2: number] = [0, 0];
 
 		const numbers = lines(input).map(line => Number(line));
 

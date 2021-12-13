@@ -55,11 +55,15 @@ export class BenchmarkCommand extends Command {
 
 		const benchmarkResults = await this.benchmark.runSuites();
 
-		const resultsEntries = [...benchmarkResults.entries()];
+		const resultsEntries = [...benchmarkResults.entries()].map(
+			([dayName, suiteResults]) => [dayName, toDigits(convert(suiteResults.get('solve')!.percentile(50), 'ns').to('ms'), 2)] as const,
+		);
+
+		resultsEntries.push(...[...this.resolveDays()].filter(([, day]) => day.skipBenchmarks).map(([dayName]) => [dayName, Number.POSITIVE_INFINITY] as const));
 
 		resultsEntries.sort(([dayNameA], [dayNameB]) => dayNameA.localeCompare(dayNameB, undefined, {numeric: true}));
 
-		return new Map(resultsEntries.map(([dayName, suiteResults]) => [dayName, toDigits(convert(suiteResults.get('solve')!.percentile(50), 'ns').to('ms'), 2)]));
+		return new Map(resultsEntries);
 	}
 
 	private resolveDays(): Map<string, Day> {

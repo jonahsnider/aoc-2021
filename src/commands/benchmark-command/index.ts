@@ -27,7 +27,7 @@ export class BenchmarkCommand extends Command {
 	private readonly benchmark = new Benchmark();
 
 	async execute() {
-		const dayNames = [...this.resolveDays().keys()];
+		const dayNames = [...this.resolveDays().entries()].filter(([, day]) => !day.skipBenchmarks).map(([dayName]) => dayName);
 
 		const results = await this.benchmarkDays(dayNames);
 

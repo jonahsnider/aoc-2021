@@ -1,6 +1,6 @@
+import {Console} from 'node:console';
 import {Sort} from '@jonahsnider/util';
 import {Command, Option} from 'clipanion';
-import {Console} from 'node:console';
 import {days} from '../days/index.js';
 import type {Day} from '../lib/solution.js';
 import type {SolutionPair} from '../lib/types.js';

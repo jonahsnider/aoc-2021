@@ -4,7 +4,7 @@ import {Day999} from './index.js';
 
 const input = await getInput(999);
 
-test('actual solution', t => {
+test.skip('actual solution', t => {
 	const solution = new Day999().solve(input);
 
 	t.deepEqual(solution, [0, 0]);
